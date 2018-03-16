@@ -1,6 +1,5 @@
 package com.magiclon.assessment
 
-import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -17,29 +16,28 @@ import com.tencent.smtt.sdk.WebViewClient
 
 
 class MainActivity : AppCompatActivity() {
-    private var webview: WebView?=null
+    private var webview: WebView? = null
     var mProgress: ProgressDialog? = null
-    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         webview = WebView(applicationContext)
         setContentView(webview)
         var settings = webview?.settings
         settings?.setAppCacheEnabled(true)     // 默认值 false
-        settings?.setAppCachePath(applicationContext.cacheDir.absolutePath);
-// 存储(storage)
+        settings?.setAppCachePath(applicationContext.cacheDir.absolutePath)
+        // 存储(storage)
         settings?.domStorageEnabled = true   // 默认值 false
         settings?.databaseEnabled = true      // 默认值 false
         settings?.setSupportZoom(true)
         settings?.builtInZoomControls = true
         settings?.displayZoomControls = false
-// 是否支持viewport属性，默认值 false
-// 页面通过`<meta name="viewport" ... />`自适应手机屏幕
+        // 是否支持viewport属性，默认值 false
+        // 页面通过`<meta name="viewport" ... />`自适应手机屏幕
         settings?.useWideViewPort = true
-// 是否使用overview mode加载页面，默认值 false
-// 当页面宽度大于WebView宽度时，缩小使页面宽度等于WebView宽度
+        // 是否使用overview mode加载页面，默认值 false
+        // 当页面宽度大于WebView宽度时，缩小使页面宽度等于WebView宽度
         settings?.loadWithOverviewMode = true
-// 是否支持Javascript，默认值false
+        // 是否支持Javascript，默认值false
         settings?.javaScriptEnabled = true
 
         webview?.webChromeClient = object : WebChromeClient() {
@@ -66,6 +64,7 @@ class MainActivity : AppCompatActivity() {
                 super.onLoadResource(p0, p1)
                 Log.e("webview", p1)
             }
+
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
                 super.onReceivedError(view, request, error)
                 Log.e("webview", error?.description?.toString())
@@ -108,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             webview?.clearHistory()
             (webview?.parent as ViewGroup).removeView(webview)
             webview?.destroy()
-            webview =null
+            webview = null
         }
         super.onDestroy()
     }
