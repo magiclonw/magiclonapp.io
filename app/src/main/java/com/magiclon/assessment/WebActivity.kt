@@ -255,7 +255,7 @@ class WebActivity : AppCompatActivity() {
     fun showPicker() {
         picker=OptionsPickerBuilder(this,object : OnOptionsSelectListener {
             override fun onOptionsSelect(options1: Int, options2: Int, options3: Int, v: View?) {
-            Log.e("---","--${options1}--")
+                Log.e("---","--${options1}-22-")
             }
 
         }).build()
